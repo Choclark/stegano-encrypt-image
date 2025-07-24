@@ -11,7 +11,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { Upload, Download, Eye, EyeOff, Lock, Unlock, ImageIcon } from "lucide-react"
-import { encode } from "punycode"
+import Image from "next/image"
 
 export default function SteganographyApp() {
   const [encodeFile, setEncodeFile] = useState<File | null>(null)
@@ -20,7 +20,6 @@ export default function SteganographyApp() {
   const [encodeLoading, setEncodeLoading] = useState(false)
   const [encodeKey,setEncodeKey] = useState("")
   const [decodeKey,setDecodeKey] = useState("")
-  const [useEncodeKey,setUseEncodeKey] = useState(false)
 
   const [decodeFile, setDecodeFile] = useState<File | null>(null)
   const [decodedText, setDecodedText] = useState("")
@@ -63,7 +62,7 @@ export default function SteganographyApp() {
       const imageUrl = URL.createObjectURL(blob)
       setEncodedImage(imageUrl)
       setSuccess("Text successfully hidden in image!")
-    } catch (err) {
+    } catch (err:any) {
       setError("Failed to encode image. Please try again.")
     } finally {
       setEncodeLoading(false)
@@ -249,7 +248,7 @@ export default function SteganographyApp() {
                   {encodedImage ? (
                     <div className="space-y-4">
                       <div className="relative rounded-lg overflow-hidden border">
-                        <img
+                        <Image
                           src={encodedImage || "/placeholder.svg"}
                           alt="Encoded image"
                           className="w-full h-auto max-h-96 object-contain"
