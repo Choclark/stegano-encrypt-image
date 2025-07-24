@@ -62,7 +62,7 @@ export default function SteganographyApp() {
       const imageUrl = URL.createObjectURL(blob)
       setEncodedImage(imageUrl)
       setSuccess("Text successfully hidden in image!")
-    } catch (err:any) {
+    } catch {
       setError("Failed to encode image. Please try again.")
     } finally {
       setEncodeLoading(false)
